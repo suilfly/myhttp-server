@@ -1,6 +1,7 @@
 const http = require('http')
 const fs = require('fs')
 const path = require('path')
+const childProcess = require('child_process')
 
 
 /**
@@ -8,14 +9,12 @@ const path = require('path')
 */
 const getFileLists = (iPath) => {
     const dir = path.resolve(__dirname)
-    console.log(dir)
 
     fs.stat(iPath, (err, stat) => {
         if(err) return
         // 读取当前目录
 
         fs.readdir(dir, (err, files) => {
-            console.log(files)
 
             let html = `${[
                 '<!doctype html>',
@@ -31,10 +30,13 @@ const getFileLists = (iPath) => {
         })
     }) 
 }
-
-getFileLists('/')
+const url = 'http://localhost:3000'
 
 // 创建服务器
-const server = http.createServer((req, res) => {
+const server = http.createServer()
 
+server.listen(3000,() => {
+    console.log('listening port 3000......')
 })
+
+childProcess.exec(`start ${url}`)
