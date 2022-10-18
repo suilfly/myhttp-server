@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "debugger": "node --inspect index.js"
   },
   "dependencies": {
     "mime": "^3.0.0"

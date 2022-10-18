@@ -10,8 +10,7 @@ const url1 = 'http://localhost:3001';
  * @description 读取文件夹/文件信息
  */
 const getFileLists = (req, res) => {
-  console.log(req.path)
-  const url = new URL(url1 + req.url)
+  const url = new URL(url1 + req.url);
   const pathName = url.pathname;
 
   if (pathName === '/favicon.ico') return;
@@ -32,8 +31,11 @@ const getFileLists = (req, res) => {
         } else {
           let html = "<head><meta charset='utf-8'></head>";
           const files = fs.readdirSync(finalPath);
+
           files.forEach((file) => {
-            html += `<div><a href="/${file}">${file}</a></div>`;
+            html += `<div><a href="${
+              url.href.endsWith('/') ? url.href : `${url.href}/`
+            }${file}">${file}</a></div>`;
           });
 
           res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -45,10 +47,13 @@ const getFileLists = (req, res) => {
       fs.readFile(finalPath, (err, data) => {
         if (err) {
           res.end('cannot read file!');
-          return
+          return;
         }
-        res.writeHead(200, {'Content-Type': mime.getType(path.basename(finalPath))})
-        res.end(data)
+        res.writeHead(200, {
+          'Content-Type': `${mime.getType(path.basename(finalPath))}; charset=utf-8`,
+        });
+
+        res.end(data);
       });
     }
   }
