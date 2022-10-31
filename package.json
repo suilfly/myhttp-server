@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "node index.js",
-    "debugger": "node --inspect index.js"
+    "start": "node ./lib/core/index.js",
+    "debugger": "node --inspect ./lib/core/index.js"
   },
   "dependencies": {
     "mime": "^3.0.0"
