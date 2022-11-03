@@ -1,9 +1,13 @@
 {
+  "name": "static-server",
+  "main": "./lib/core/index.js",
+  "version": "0.0.1",
   "scripts": {
     "start": "node ./lib/core/index.js",
     "debugger": "node --inspect ./lib/core/index.js"
   },
   "dependencies": {
     "mime": "^3.0.0"
-  }
+  },
+  "bin": "./lib/core/index.js"
 }
